@@ -37,6 +37,7 @@ server.listen(port);
 server.on('connection', function(socket) {
     socket.id = getRandomInt(100000000, 999999999)+Object.keys(SOCKET_LIST).length;
     SOCKET_LIST[socket.id] = new JsonSocket(socket);
+    SOCKET_LIST[socket.id].remoteAddress = socket.remoteAddress;
     log("A server [id:"+socket.id+"] has connected.")
     socket.on('close', function() {
       log("A server [id:"+socket.id+"] has disconnected.")
