@@ -70,6 +70,7 @@ rl.on('line', (line) => {
     case 'serverinfo':
       var serverid = args[1];
       var sock = SOCKET_LIST[serverid];
+      log(SOCKET_LIST[serverid]);
       log('IP: '+sock.remoteAddress);
       break;
     default:
