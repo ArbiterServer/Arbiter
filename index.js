@@ -45,9 +45,10 @@ server.on('connection', function(socket) {
     });
     socket.on('message', function(message) {
         if (message.command == 'start') {
-          streamInterval = setInterval(function() {
+          socket.sendMessage({command: "sysinfo"});
+          /*streamInterval = setInterval(function() {
 
-          }, 1000);
+          }, 1000);*/
         } else if (message.command == 'stop') {
           clearInterval(streamInterval);
         }
@@ -71,7 +72,7 @@ rl.on('line', (line) => {
     case 'serverinfo':
       var serverid = args[1];
       var sock = SOCKET_LIST[serverid];
-      log('IP: '+sock.og.remoteAddress);
+      log('IP: '+sock.og.remoteAddress+' Port: '+sock.og.remotePort);
       break;
     default:
       log('Unknown command');
